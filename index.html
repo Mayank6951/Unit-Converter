@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Unit Converter</title>
+<style>
+body {
+  background-color: #6f1ebb;
+  font-family: sans-serif;
+}
+
+.converter {
+  width: 500px;
+  margin: 0 auto;
+}
+
+.input {
+  width: 100px;
+  margin-bottom: 10px;
+}
+
+.output {
+  font-weight: bold;
+}
+</style>
+</head>
+<body>
+<div class="converter">
+  <h1>Unit Converter</h1>
+  <div class="input">
+    <label for="from">From:</label>
+    <select id="from">
+      <option value="meters">Meters</option>
+      <option value="feet">Feet</option>
+      <option value="centimeters">Centimeters</option>
+      <option value="inches">Inches</option>
+    </select>
+  </div>
+  <div class="input">
+    <label for="to">To:</label>
+    <select id="to">
+      <option value="meters">Meters</option>
+      <option value="feet">Feet</option>
+      <option value="centimeters">Centimeters</option>
+      <option value="inches">Inches</option>
+    </select>
+  </div>
+  <div class="input">
+    <label for="value">Value:</label>
+    <input type="text" id="value" value="1">
+  </div>
+  <div class="output">
+    <label for="output">Output:</label>
+    <input type="text" id="output" value="1">
+  </div>
+  <script>
+  function convert() {
+    var from = document.getElementById("from").value;
+    var to = document.getElementById("to").value;
+    var value = document.getElementById("value").value;
+
+    var conversionRate = {
+      "meters": 1,
+      "feet": 0.3048,
+      "centimeters": 0.01,
+      "inches": 0.0254
+    };
+
+    var output = value * conversionRate[from] / conversionRate[to];
+
+    document.getElementById("output").value = output;
+  }
+
+  document.getElementById("from").addEventListener("change", convert);
+  document.getElementById("to").addEventListener("change", convert);
+  document.getElementById("value").addEventListener("keyup", convert);
+  </script>
+</div>
+</body>
+</html>
